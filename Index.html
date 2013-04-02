@@ -11,6 +11,7 @@
 <div class="row-fluid" ng-controller="enderecoController">
     <div class="span12">
         <!--menu-->
+
         <nav class="navbar">
             <div class="navbar-inner">
                 <a class="brand" href="Index.html">AngularJS</a>
@@ -36,7 +37,7 @@
                         <td>{{x.estado.nome}}</td>
                         <td>{{x.cidade.nome}}</td>
                         <td>{{x.cep}}</td>
-                        <td>{{x.logradouro}}</td>
+                        <td>{{x.tipoLogradouro.nome}}: {{x.logradouro}}</td>
                     </tr>
                 </tbody>
             </table>
