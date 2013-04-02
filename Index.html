@@ -2,10 +2,76 @@
 <html>
 <head>
     <title></title>
+    <link rel="stylesheet" type="text/css" href="libs/bootstrap.min.css" media="all"/>
     <script type="text/javascript" src="libs/angular.js"></script>
+    <script type="text/javascript" src="libs/app.js"></script>
+    <meta charset="utf-8" />
 </head>
-<body ng-app>
+<body ng-app="">
+<div class="row-fluid" ng-controller="enderecoController">
+    <div class="span12">
+        <!--menu-->
+        <nav class="navbar">
+            <div class="navbar-inner">
+                <a class="brand" href="Index.html">AngularJS</a>
+                <ul class="nav">
+                    <li><a href="#todos">Todos</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!--Table-->
+        <div id="Enderecos" class="span6">
+            <table>
+                <thead>
+                <tr>
+                    <th>Estado</th>
+                    <th>Cidade</th>
+                    <th>CEP</th>
+                    <th>Logradouro</th>
+                </tr>
 
+                </thead>
+                <tbody id="anunciantes">
+                    <tr ng-repeat="x in enderecos">
+                        <td>{{x.estado.nome}}</td>
+                        <td>{{x.cidade.nome}}</td>
+                        <td>{{x.cep}}</td>
+                        <td>{{x.logradouro}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="formEndereco" class="span5" >
+            <form ng-submit="addEnderecos()">
+                <fieldset>
+                    <legend>Cadastro de Endereços</legend>
+                    <label for="Estado">Estado: {{estadoSelecionado.id}}</label>
+
+                    <select name="Estado" id="Estado" ng-model="estadoSelecionado" ng-options="d.nome for d in endereco.estados" required >
+                             <option value="">Selecione</option>
+                    </select>
+                    <label for="Cidade">Cidade:</label>
+                    <select name="Cidade" id="Cidade" ng-model="cidadeSelecionada" ng-options="d.nome for d in endereco.cidades | filter: { estado: estadoSelecionado.id}" required >
+                        <option value="">Selecione</option>
+                    </select>
+                    <label for="CEP">Cep:</label>
+                    <input type="text" ng-model="cep" id="CEP" name=CEP value="" required=""/>
+                    <label for="Logradouro">Logradouro:</label>
+                    <select name="TipoLogradouro"  ng-model="tipoLogradouroSelecionado" id="TipoLogradouro" class="span2" ng-options="d.nome for d in endereco.tipoLogradouro" >
+
+                    </select>
+                    <input required="" ng-model="logradouro" type="text" id="Logradouro" name="Logradouro" value=""/>         <br />
+
+                    <button type="submit" class="btn btn-large">
+                        <i class="icon-ok-circle" ></i>Submit
+                    </button>
+                </fieldset>
+            </form>
+        </div>
+
+    </div>
+
+</div>
 
 </body>
 </html>
